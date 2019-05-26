@@ -1,0 +1,21 @@
+<h2>Users</h2>
+<ul class="users">
+  <li *ngFor="let user of users"
+      (click)="onSelect(user)"
+      [class.selected]="user === selectedUser">
+    <span class="badge">{{user.name}}</span>
+  </li>
+</ul>
+
+<div class="selectedUser" *ngIf="selectedUser">
+  <h2>{{selectedUser.name | uppercase }} details</h2>
+  <div><span>id:</span>{{selectedUser.id}}</div>
+  <div>
+    <label>
+      <input class="textField" [(ngModel)]="selectedUser.name" placeholder="name"/><br/>
+      <input [(ngModel)]="selectedUser.bio" placeholder="bio"/><br/>
+      <input [(ngModel)]="selectedUser.website" placeholder="website"/><br/>
+    </label>
+  </div>
+</div>
+

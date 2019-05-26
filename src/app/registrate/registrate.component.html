@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-title>Registreren</mat-card-title>
+  <mat-card-content>
+    <form>
+      <mat-form-field appearance="legacy">
+        <mat-label>Username</mat-label>
+        <input type="text" name="username" [(ngModel)]="user.name" matInput placeholder="name">
+      </mat-form-field>
+      <br/>
+      <mat-form-field appearance="legacy">
+        <mat-label>Password</mat-label>
+        <input type="password" name="password" [(ngModel)]="user.password" matInput placeholder="password">
+      </mat-form-field>
+      <br/>
+      <mat-form-field appearance="legacy">
+        <mat-label>Bio</mat-label>
+        <input type="text" name="bio" [(ngModel)]="user.bio" matInput placeholder="Bio">
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>Website</mat-label>
+        <input type="text" name="website" [(ngModel)]="user.website" matInput placeholder="Website">
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>Geboorte datum</mat-label>
+        <input type="date" name="dateofbirth" [(ngModel)]="user.date" matInput>
+      </mat-form-field>
+      <br/>
+      <button (click)="register()" mat-stroked-button>Registreer</button>
+    </form>
+  </mat-card-content>
+</mat-card>

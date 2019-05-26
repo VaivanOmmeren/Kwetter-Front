@@ -1,0 +1,93 @@
+<div class="user-logged-in" *ngIf="userProfile">
+
+  <mat-tab-group color="accent">
+    <mat-tab label="Profile">
+      <div *ngIf="isCurrentUser(); else notCurrentUser">
+        <mat-card>
+          <mat-card-title>Profile</mat-card-title>
+          <mat-card-content>
+            <form>
+              <mat-form-field appearance="legacy">
+                <mat-label>Username</mat-label>
+                <input type="text" name="username" [(ngModel)]="userProfile.name" matInput placeholder="name">
+              </mat-form-field>
+              <br/>
+              <mat-form-field appearance="legacy">
+                <mat-label>Password</mat-label>
+                <input type="password" name="password" [(ngModel)]="userProfile.password" matInput placeholder="password">
+              </mat-form-field>
+              <br/>
+              <mat-form-field appearance="legacy">
+                <mat-label>Bio</mat-label>
+                <input type="text" name="bio" [(ngModel)]="userProfile.bio" matInput placeholder="Bio">
+              </mat-form-field>
+              <br/>
+              <mat-form-field>
+                <mat-label>Website</mat-label>
+                <input type="text" name="website" [(ngModel)]="userProfile.website" matInput placeholder="Website">
+              </mat-form-field>
+              <br/>
+              <mat-form-field>
+                <mat-label>Geboorte datum</mat-label>
+                <input type="date" name="dateofbirth" [(ngModel)]="userProfile.date" matInput>
+              </mat-form-field>
+              <br/>
+              <button (click)="editUser()" mat-stroked-button>Edit</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <ng-template #notCurrentUser>
+        <mat-card>
+          <mat-card-title>Profile</mat-card-title>
+          <mat-card-content>
+            <p>Username: {{userProfile.name}}</p>
+            <p>bio: {{userProfile.bio}}</p>
+            <p>website: {{userProfile.website}}</p>
+            <p>date: {{userProfile.date}}</p>
+          </mat-card-content>
+        </mat-card>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Followers">
+      <ng-template matTabContent>
+        <div *ngIf="followers && followers.length > 0; else noFollowers">
+          <p *ngFor="let user of followers">
+            Name: <a routerLink="/profile/{{user.name}}">{{user.name}}</a>
+          </p>
+        </div>
+        <ng-template #noFollowers>
+          <h2>There are no users to display</h2>
+        </ng-template>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Following">
+      <div *ngIf="following && following.length > 0; else noFollowing">
+        <p *ngFor="let user of following">
+          Name: <a routerLink="/profile/{{user.name}}">{{user.name}}</a>
+        </p>
+      </div>
+      <ng-template #noFollowing>
+        <h2>There are no users to display</h2>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Tweets">
+
+      <div *ngIf="Tweets && Tweets.length > 0; else noTweets">
+        <p *ngFor="let tweet of Tweets">
+          <mat-card>
+            <mat-card-content>
+              {{tweet.text}}
+            </mat-card-content>
+          </mat-card>
+        </p>
+      </div>
+      <ng-template #noTweets>
+        <h1>
+          There are no tweets to display :(
+        </h1>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
