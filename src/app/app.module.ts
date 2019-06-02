@@ -32,6 +32,7 @@ import { RegistrateComponent } from './registrate/registrate.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TweetdialogComponent } from './tweetdialog/tweetdialog.component';
 import {JwtInterceptor} from './classes/jwtInterceptor';
+import { TimelineComponent } from './timeline/timeline.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {JwtInterceptor} from './classes/jwtInterceptor';
     RegistrateComponent,
     ProfileComponent,
     TweetdialogComponent,
+    TimelineComponent,
   ],
   imports: [
     BrowserModule,

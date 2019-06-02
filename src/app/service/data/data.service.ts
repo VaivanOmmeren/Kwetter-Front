@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 
 
 @Injectable({
@@ -6,16 +6,32 @@ import {Injectable} from '@angular/core';
 })
 
 export class DataService {
-  private wsUri = 'ws://localhost:8080/socket';
-  websocket = new WebSocket(this.wsUri);
+  username: string;
+  public websocket;
+  connected: boolean;
+
+  private wsUri = 'ws://localhost:8080/socket/';
 
   constructor() {
+
+  }
+
+  connect(username: string): void {
+    this.username = username;
+    console.log(`This is the url ${this.wsUri + this.username}`);    this.websocket = new WebSocket(this.wsUri + this.username);
     this.websocket.onopen = evt => {
-      alert('Connnection open...');
+      console.log('connected');
     };
-    this.websocket.onmessage = evt => {
-      alert('Received message' + evt.data);
+
+    this.connected = true;
+  }
+
+  disconnect(): void {
+    this.connected = false;
+    this.websocket.onclose = evt => {
+      console.log('disconnected');
     };
+    this.websocket.close();
   }
 }
 

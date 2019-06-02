@@ -4,6 +4,7 @@ import {Tweet} from '../classes/Tweet';
 import {UserService} from '../service/user/user.service';
 import {ActivatedRoute} from '@angular/router';
 import {TweetService} from '../service/tweet/tweet.service';
+import {LoginService} from '../service/login/login.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
   following: User[];
 
   constructor(private userService: UserService, private route: ActivatedRoute,
-              private tweetService: TweetService) {
+              private tweetService: TweetService, private loginS: LoginService) {
   }
 
   ngOnInit() {
@@ -69,6 +70,12 @@ export class ProfileComponent implements OnInit {
       return u.id === this.userProfile.id;
     }
     return false;
+  }
+
+  follow(): void {
+    this.userService.followUser(this.loginS.user.name, this.username).subscribe(reply => {
+      console.log('follow success');
+    });
   }
 }
 

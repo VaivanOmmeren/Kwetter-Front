@@ -51,4 +51,8 @@ export class UserService {
       .pipe(
         catchError(this.handleError<User[]>('getFollowing', [])));
   }
+
+  followUser(username, followname) {
+    return this.http.put(this.userUrl + '/' + username + '/' + 'follow?followID=' + followname, '');
+  }
 }

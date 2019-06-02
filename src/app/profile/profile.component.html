@@ -1,3 +1,4 @@
+<script src="../service/data/data.service.ts"></script>
 <div class="user-logged-in" *ngIf="userProfile">
 
   <mat-tab-group color="accent">
@@ -45,6 +46,7 @@
             <p>bio: {{userProfile.bio}}</p>
             <p>website: {{userProfile.website}}</p>
             <p>date: {{userProfile.date}}</p>
+            <button (click)="follow()" mat-stroked-button>Follow User</button>
           </mat-card-content>
         </mat-card>
       </ng-template>

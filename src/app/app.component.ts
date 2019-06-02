@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
 import {LoginService} from './service/login/login.service';
+import {Component, OnInit} from '@angular/core';
 import {User} from './classes/User';
 import {Router} from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material';
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   logout(): void {
     this.loginService.user = new User();
     localStorage.clear();
+    this.router.navigateByUrl('/');
     window.location.reload();
   }
 
@@ -43,7 +44,10 @@ export class AppComponent implements OnInit {
         if (data) {
           const t = new Tweet(data['tweetText'], this.loginService.user.id, new Date());
           this.tweetService.placeTweet(t);
-          this.dataService.websocket.send(' a tweet was placed');
+
+          if (this.dataService.connected) {
+            this.dataService.websocket.send(JSON.stringify(t));
+          }
         }
       });
   }

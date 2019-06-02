@@ -1,0 +1,17 @@
+<div *ngIf="tweets && tweets.length > 0; else noTweets">
+  <p *ngFor="let tweet of tweets">
+    <mat-card>
+      <mat-card-content>
+        {{tweet.text}}
+        <br/>
+        {{tweet.postTimeStamp}}
+      </mat-card-content>
+    </mat-card>
+  </p>
+</div>
+<ng-template #noTweets>
+  <h1>
+    Your followers are lame and have no tweets.
+  </h1>
+</ng-template>
+
