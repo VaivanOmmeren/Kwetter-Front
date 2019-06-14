@@ -9,7 +9,7 @@ import {DataService} from '../service/data/data.service';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.sass']
+  styleUrls: ['./timeline.component.scss']
 })
 export class TimelineComponent implements OnInit, OnDestroy {
 
@@ -29,6 +29,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
       this.following.push(this.loginS.user);
       this.timelineS.getTimeline(this.following).subscribe(tweet => {
         this.tweets = tweet;
+        this.tweets.reverse();
       });
     });
 
@@ -42,7 +43,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
       console.log(`message received ${evt.data}`);
       const t = JSON.parse(evt.data);
       console.log(this.tweets);
-      this.tweets.push(t);
+      this.tweets.unshift(t);
       console.log(this.tweets);
 
     };

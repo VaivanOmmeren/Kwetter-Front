@@ -33,6 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TweetdialogComponent } from './tweetdialog/tweetdialog.component';
 import {JwtInterceptor} from './classes/jwtInterceptor';
 import { TimelineComponent } from './timeline/timeline.component';
+import { TrendingComponent } from './trending/trending.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { TimelineComponent } from './timeline/timeline.component';
     ProfileComponent,
     TweetdialogComponent,
     TimelineComponent,
+    TrendingComponent,
   ],
   imports: [
     BrowserModule,

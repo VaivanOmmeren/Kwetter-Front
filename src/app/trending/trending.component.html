@@ -1,0 +1,15 @@
+<div class="trends" *ngIf="trends && trends.length > 0; else noTrending">
+    <mat-card>
+      <mat-card-content>
+        <h2 class="head">Trending</h2>
+        <p *ngFor="let trend of trends">
+          {{trend.trendName}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+</div>
+<ng-template #noTrending>
+  <h3>
+    There aren't any trending subjects. Join in by using # in your tweets!
+  </h3>
+</ng-template>

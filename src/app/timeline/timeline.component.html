@@ -1,4 +1,5 @@
-<div *ngIf="tweets && tweets.length > 0; else noTweets">
+
+<div class="tweets" *ngIf="tweets && tweets.length > 0; else noTweets">
   <p *ngFor="let tweet of tweets">
     <mat-card>
       <mat-card-content>
@@ -14,4 +15,6 @@
     Your followers are lame and have no tweets.
   </h1>
 </ng-template>
+
+<app-trending></app-trending>
 

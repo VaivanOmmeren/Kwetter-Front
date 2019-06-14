@@ -18,7 +18,8 @@ export class DataService {
 
   connect(username: string): void {
     this.username = username;
-    console.log(`This is the url ${this.wsUri + this.username}`);    this.websocket = new WebSocket(this.wsUri + this.username);
+    console.log(`This is the url ${this.wsUri + this.username}`);
+    this.websocket = new WebSocket(this.wsUri + this.username);
     this.websocket.onopen = evt => {
       console.log('connected');
     };
