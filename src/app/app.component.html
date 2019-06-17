@@ -1,17 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
-  <mat-toolbar color="primary">
-    <a mat-raised-button color="accent" routerLink="/">{{title}}</a>
+  <mat-toolbar class="mat-elevation-z6 nav">
+    <a class="home" routerLink="/">{{title}}</a>
     <span class="fill-space"></span>
-    <input class="search-bar" type="search">
     <div *ngIf="loginService.user; else logIn">
-      <button class="Timeline-button" mat-raised-button color="accent" routerLink="/timeline">Timeline</button>
-      <button class="tweet-button" mat-raised-button color="accent" (click)="placeTweet()">Tweet</button>
-      <a class="profile-button" mat-raised-button color="accent" routerLink="/profile/{{loginService.user.name}}">{{loginService.user.name}}</a>
-      <a mat-raised-button color="warn" (click)="logout()">Logout</a>
+      <a routerLink="/timeline">Timeline |</a>
+      <a (click)="placeTweet()"> Tweet |</a>
+      <a routerLink="/profile/{{loginService.user.name}}"> {{loginService.user.name}} |</a>
+
+      <a *ngIf="loginService.user.userRole.name == 'Administrator'" routerLink="/admin"> Admin |</a>
+      <a (click)="logout()"> Logout</a>
     </div>
     <ng-template #logIn>
-      <a mat-raised-button color="accent" routerLink="/login">Login</a>
+      <a routerLink="/login">Login</a>
     </ng-template>
   </mat-toolbar>
 </div>

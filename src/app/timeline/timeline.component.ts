@@ -6,6 +6,7 @@ import {User} from '../classes/User';
 import {UserService} from '../service/user/user.service';
 import {DataService} from '../service/data/data.service';
 
+
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
@@ -14,7 +15,6 @@ import {DataService} from '../service/data/data.service';
 export class TimelineComponent implements OnInit, OnDestroy {
 
   tweets: Tweet[] = [];
-  following: User[];
 
   constructor(private timelineS: TimelineService,
               private loginS: LoginService,
@@ -24,13 +24,12 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.userS.getFollowing(this.loginS.user.name).subscribe(res => {
-      this.following = res;
-      this.following.push(this.loginS.user);
-      this.timelineS.getTimeline(this.following).subscribe(tweet => {
-        this.tweets = tweet;
-        this.tweets.reverse();
-      });
+
+    this.loginS.following.push(this.loginS.user);
+    this.timelineS.getTimeline(this.loginS.following).subscribe(tweet => {
+      this.tweets = tweet;
+      this.tweets.reverse();
+      console.log(this.tweets);
     });
 
     this.dataS.connect(this.loginS.user.id);
@@ -42,9 +41,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     this.dataS.websocket.onmessage = evt => {
       console.log(`message received ${evt.data}`);
       const t = JSON.parse(evt.data);
-      console.log(this.tweets);
       this.tweets.unshift(t);
-      console.log(this.tweets);
 
     };
   }

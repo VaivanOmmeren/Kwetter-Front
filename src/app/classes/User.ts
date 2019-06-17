@@ -1,3 +1,5 @@
+import {UserRole} from './UserRole';
+
 export class User {
   id: string;
   name: string;
@@ -6,4 +8,5 @@ export class User {
   password: string;
   date: Date;
   token: string;
+  userRole: UserRole;
 }

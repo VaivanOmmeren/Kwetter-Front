@@ -20,8 +20,10 @@ export class ProfileComponent implements OnInit {
   followers: User[];
   following: User[];
 
-  constructor(private userService: UserService, private route: ActivatedRoute,
-              private tweetService: TweetService, private loginS: LoginService) {
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private tweetService: TweetService,
+              private loginS: LoginService) {
   }
 
   ngOnInit() {
@@ -31,6 +33,7 @@ export class ProfileComponent implements OnInit {
         this.getUser();
       }
     );
+    console.log(this.loginS.following);
   }
 
   getUser(): void {
@@ -55,7 +58,10 @@ export class ProfileComponent implements OnInit {
 
   editUser(): void {
     this.userService.editUser(this.userProfile)
-      .subscribe((user) => localStorage.setItem('user', JSON.stringify(user)));
+      .subscribe((user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.loginS.user = user;
+      });
   }
 
   getKweets(): void {
@@ -74,6 +80,9 @@ export class ProfileComponent implements OnInit {
 
   follow(): void {
     this.userService.followUser(this.loginS.user.name, this.username).subscribe(reply => {
+      this.userService.getFollowing(this.loginS.user.name).subscribe( res => {
+        this.loginS.following = res;
+      })
       console.log('follow success');
     });
   }

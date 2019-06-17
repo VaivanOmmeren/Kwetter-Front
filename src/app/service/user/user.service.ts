@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Tweet} from '../../classes/Tweet';
+import {LoginService} from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'

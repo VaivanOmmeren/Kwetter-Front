@@ -29,8 +29,9 @@ export class AppComponent implements OnInit {
   logout(): void {
     this.loginService.user = new User();
     localStorage.clear();
-    this.router.navigateByUrl('/');
-    window.location.reload();
+    this.router.navigateByUrl('/').then(() => {
+      window.location.reload();
+    });
   }
 
   placeTweet(): void {
@@ -42,7 +43,9 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe((data) => {
         if (data) {
-          const t = new Tweet(data['tweetText'], this.loginService.user.id, new Date());
+          const t = new Tweet(data['tweetText'],
+            this.loginService.user.id,
+            this.loginService.user.name);
           this.tweetService.placeTweet(t);
 
           if (this.dataService.connected) {

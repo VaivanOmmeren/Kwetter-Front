@@ -46,7 +46,9 @@
             <p>bio: {{userProfile.bio}}</p>
             <p>website: {{userProfile.website}}</p>
             <p>date: {{userProfile.date}}</p>
-            <button (click)="follow()" mat-stroked-button>Follow User</button>
+            <ng-container *ngIf="loginS.following && !loginS.following.includes(loginS.user)">
+              <button (click)="follow()" mat-stroked-button>Follow User</button>
+            </ng-container>
           </mat-card-content>
         </mat-card>
       </ng-template>
@@ -76,13 +78,17 @@
     <mat-tab label="Tweets">
 
       <div *ngIf="Tweets && Tweets.length > 0; else noTweets">
-        <p *ngFor="let tweet of Tweets">
-          <mat-card>
-            <mat-card-content>
+        <mat-card class="mat-elevation-z0 tweet" *ngFor="let tweet of Tweets">
+          <mat-card-content>
+            <a routerLink="/profile/{{tweet.authorname}}">{{tweet.authorname}}</a>
+            <span class="fill-space">Posted on: {{tweet.postTimeStamp}}</span>
+            <br/>
+            <br/>
+            <p>
               {{tweet.text}}
-            </mat-card-content>
-          </mat-card>
-        </p>
+            </p>
+          </mat-card-content>
+        </mat-card>
       </div>
       <ng-template #noTweets>
         <h1>

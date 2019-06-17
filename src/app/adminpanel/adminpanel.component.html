@@ -1,0 +1,64 @@
+<div class="admin-search">
+  <div class="search-form">
+    <form #searchForm="ngForm" (ngSubmit)="search(searchForm.value)">
+      <mat-form-field class="search-user-field">
+        <input type="search" name="name" matInput placeholder="Username" ngModel>
+      </mat-form-field>
+      <button type="submit" mat-raised-button>Search</button>
+    </form>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="admin-search-content">
+
+    <div class="search-user">
+      <ng-container *ngIf="selectedUser && selectedUser !== undefined">
+        <mat-card>
+          <mat-card-content>
+
+            <h3>User</h3>
+
+            <span class="left">id:</span>
+            <span class="right">{{this.selectedUser.id}}</span>
+            <br/>
+
+            <span class="left">Name:</span>
+            <span class="right">{{this.selectedUser.name}}</span>
+
+            <br/>
+            <span class="left">Role:</span>
+            <span class="right">{{this.selectedUser.userRole.name}}</span>
+
+
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    </div>
+
+    <mat-divider [vertical]="true"></mat-divider>
+
+    <div class="search-tweets">
+      <ng-container *ngIf="selectedUserKweets">
+        <ng-container *ngIf="selectedUserKweets.length > 0; else noTweets">
+
+          <mat-card *ngFor="let tweet of selectedUserKweets" class="mat-elevation-z0 tweet">
+            <mat-card-content>
+              <img class="profilePic" src="../../assets/avatar-1577909_960_720.png">
+              <a routerLink="/profile/{{tweet.authorname}}">{{tweet.authorname}}</a>
+              <span class="fill-space"> <a (click)="removeTweet(tweet)">Remove tweet</a></span>
+              <br/>
+              <br/>
+              <p>
+                {{tweet.text}}
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+        <ng-template #noTweets>
+            <h4>This user has no tweets.</h4>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+

@@ -2,8 +2,9 @@
     <mat-card>
       <mat-card-content>
         <h2 class="head">Trending</h2>
+
         <p *ngFor="let trend of trends">
-          {{trend.trendName}}
+          <a routerLink="/trending/{{trend.trendName}}">{{trend.trendName}}</a>
         </p>
       </mat-card-content>
     </mat-card>

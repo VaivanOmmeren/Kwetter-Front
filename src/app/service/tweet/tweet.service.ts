@@ -25,5 +25,9 @@ export class TweetService {
     this.http.post(this.baseUrl, t).subscribe();
   }
 
+  getTweetByTag(tag: string): Observable<Tweet[]> {
+    return this.http.get<Tweet[]>(this.baseUrl + '/' + 'hashtag' + '?tag=' + tag);
+  }
+
 
 }

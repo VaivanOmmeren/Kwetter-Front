@@ -1,0 +1,26 @@
+
+<div class="tweets" *ngIf="tweets && tweets.length > 0; else noTweets">
+  <mat-card class="mat-elevation-z0 tweet" *ngFor="let tweet of tweets">
+    <mat-card-content>
+      <img class="profilePic" src="../../assets/avatar-1577909_960_720.png">
+      <a routerLink="/profile/{{tweet.authorname}}">{{tweet.authorname}}</a>
+      <span class="fill-space">Posted on: {{tweet.postTimeStamp}}</span>
+
+      <br/>
+      <br/>
+      <p>
+        {{tweet.text}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+<ng-template #noTweets>
+  <div class="tweets">
+    <h1>
+      There are no tweets for this trend!
+    </h1>
+  </div>
+</ng-template>
+
+<app-trending></app-trending>
+

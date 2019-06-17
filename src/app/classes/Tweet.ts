@@ -4,11 +4,12 @@ export class Tweet {
   text: string;
   authorID: string;
   postTimeStamp: Date;
+  authorname: string;
 
 
-  constructor(text: string, authorID: string, postTimeStamp: Date) {
+  constructor(text: string, authorID: string, authorname: string) {
     this.text = text;
     this.authorID = authorID;
-    this.postTimeStamp = postTimeStamp;
+    this.authorname = authorname;
   }
 }

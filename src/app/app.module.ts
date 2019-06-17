@@ -26,7 +26,8 @@ import {
   MatOptionModule,
   MatSnackBarModule,
   MatTabsModule,
-  MatSlideToggleModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher
+  MatSlideToggleModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDividerModule,
+  MatListModule
 } from '@angular/material';
 import { RegistrateComponent } from './registrate/registrate.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -34,6 +35,9 @@ import { TweetdialogComponent } from './tweetdialog/tweetdialog.component';
 import {JwtInterceptor} from './classes/jwtInterceptor';
 import { TimelineComponent } from './timeline/timeline.component';
 import { TrendingComponent } from './trending/trending.component';
+import { HomeComponent } from './home/home.component';
+import { TrendinglistComponent } from './trendinglist/trendinglist.component';
+import { AdminpanelComponent } from './adminpanel/adminpanel.component';
 
 
 @NgModule({
@@ -46,6 +50,9 @@ import { TrendingComponent } from './trending/trending.component';
     TweetdialogComponent,
     TimelineComponent,
     TrendingComponent,
+    HomeComponent,
+    TrendinglistComponent,
+    AdminpanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +77,9 @@ import { TrendingComponent } from './trending/trending.component';
     MatSlideToggleModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDividerModule,
+    MatListModule
   ],
   exports: [
     MatButtonModule,
